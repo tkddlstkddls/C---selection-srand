@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#define swap(x,y,t){(t) = (x); (x) = (y); (y) = (t);}
+
+void input(int a[]){
+	srand(time(NULL));
+	for (int i = 0; i < 5; i++){
+		a[i] = rand() % 90 + 10;
+	}
+}
+
+void selection(int a[]){
+	int i;
+	int t;
+	for (i = 0; i < 5 - 1; i++){
+		for (int j = i+1 ; j < 5; j++){
+			if (a[i] > a[j]){
+				swap(a[i], a[j], t);
+			}
+		}
+	}
+}
+
+
+void output(int a[]){
+	for (int i = 0; a[i] != NULL; i++){
+		printf("%d", a[i]);
+	}
+}
+
+
+
+
+int main(){
+	int a[5];
+	input(a);
+	printf("정렬전 : "); output(a);
+	selection(a);
+	printf("\n정렬후 : "); output(a);
+	return 0;
+}
