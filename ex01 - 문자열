@@ -14,7 +14,7 @@ void selection(char a[][100]){
 	int i, j;
 	char t[100];
 	for (i = 0; i < 4; i++){
-		for (j = i + 1; i < 5; i++){
+		for (j = i + 1; j < 5; j++){
 			if (strcmp(a[i],a[j])>0){ //strcmp : 앞에것이 크면 1, 같으면 0, 작으면 -1을 리턴함.
 				strcpy(t, a[i]);
 				strcpy(a[i], a[j]);
