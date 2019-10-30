@@ -1,0 +1,177 @@
+#include<stdio.h>
+
+
+
+void swap(int arr[], int a, int b) {
+
+	int temp = arr[a];
+
+	arr[a] = arr[b];
+
+	arr[b] = temp;
+
+}
+
+
+
+int Partition(int arr[], int left, int right) {
+
+	int pivot = arr[left]; // 피벗의 위치는 가장 왼쪽에서 시작
+
+	int low = left + 1;
+
+	int high = right;
+
+
+
+	while (low <= high) // 교차되기 전까지 반복한다 
+
+	{
+
+		while (pivot >= arr[low] && low <= right) // 피벗보다 큰 값을 찾는 과정 
+
+		{
+
+			low++; // low를 오른쪽으로 이동 
+
+		}
+
+		while (pivot <= arr[high] && high >= (left + 1)) // 피벗보다 작은 값을 찾는 과정 
+
+		{
+
+			high--; // high를 왼쪽으로 이동
+
+		}
+
+		if (low <= high)// 교차되지 않은 상태이면 스왑 과정 실행 
+
+		{
+
+			swap(arr, low, high); //low와 high를 스왑 
+
+		}
+
+	}
+
+	swap(arr, left, high); // 피벗과 high가 가리키는 대상을 교환 
+
+	return high;  // 옮겨진 피벗의 위치정보를 반환
+
+}
+
+
+
+void quick(int arr[], int left, int right) {
+
+	if (left <= right) {
+
+		int pivot = Partition(arr, left, right);
+
+		quick(arr, left, pivot - 1);
+
+		quick(arr, pivot + 1, right);
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+
+	printf("//////////          ////        /          /     /        /\n");
+
+	printf("/        /         /    /       / /        /     /      /  \n");
+
+	printf("/        /        /      /      /  /       /     /     /   \n");
+
+	printf("//////////       /        /     /   /      /     /    /    \n");
+
+	printf("/ /             /         /     /    /     /     /   /     \n");
+
+	printf("/  /           /////////////    /     /    /     / /       \n");
+
+	printf("/   /         /             /   /       /  /     /  /      \n");
+
+	printf("/    /        /             /   /        / /     /   /     \n");
+
+	printf("/     /      /               /  /         //     /     /   \n");
+
+	printf("/       /   /                 / /          /     /       /");
+
+	int start;
+
+	int n = 0;
+
+	int j = 0;
+
+	int arr[100];
+
+	while (true)
+
+	{
+
+		int start;
+
+		printf("\n\n\n\n\n\n\n랭킹을 확인하려면 2, 자신의 점수를 등록하려면 1, 종료하려면 0 을 입력하세요 : ");
+
+		scanf_s("%d", &start);
+
+		getchar();
+
+		if (start == 0) {
+
+			return 0;
+
+		}
+
+		if (start == 1) {
+
+			int a;
+
+			n++;
+
+			printf("\n\n\n당신의 점수를 입력하세요 : ");
+
+			scanf_s("%d", &a);
+
+			arr[n - 1] = a;
+
+			printf("등록완료 !");
+
+			continue;
+
+		} 
+
+		if (start == 2) {
+
+			quick(arr, 0, n - 1);
+
+			printf("\n랭킹!!\n");
+
+			for (int i = 0; i < n; i++) {
+
+				printf("%d위 : %d\n", i + 1, arr[n-i-1]);
+
+			}
+
+			if (n == 0) {
+
+				printf("존재하는 랭킹이 없습니다.");
+
+			}
+
+		} break;
+
+	}
+
+}
